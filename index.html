@@ -15,7 +15,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <style>
   :root {
     --coral: #F97B5C;
-    --coral-light: #FBBDAC;
+    --coral-light: #FBBDAC;  
     --coral-dark: #D95A3A;
     --blue: #6B7FD4;
     --blue-light: #B5C0EC;
@@ -42,6 +42,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     display: flex;
     align-items: center;
     justify-content: flex-start;
+  }
+
+  /* ====================================================
+     LOGO — Fallback em texto caso a imagem não carregue
+     ==================================================== */
+  .header-logo {
+    height: 48px;
+    display: block;
+  }
+
+  .header-logo-fallback {
+    display: none;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.5px;
   }
 
   .hero {
@@ -614,7 +630,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <header>
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAADuCAYAAADlanmdAACokklEQVR42uydd4BU1fn+n/ecO3V7hV16h6UL2GUXRMXemLFEo4mKGmOMJuanSXTmmpj2TdEUEzGxxBb3amIHG+xiF7GzShHpZWEXts/Mvfe8vz9mFlERgZ2F3eV8EqTs7szcc877nue85z3vIWg0mi4Ph0KSLMsFgL+eUX704X1yQwUB79F+SUMAyvZKao4pVdviqMWf1rc+feLdzz4BoJE5IohMBsC6FTUajWb/QboJNJouLq4qQ5LClnvT1MlTzp3U/+Y+WYGTcjK8AsyAqwDmpCkLAqQAHIW1TW2ffryx8dcn3DfvX0SAYhBpkaXRaDRaYGk0GmBBpNyYZlY7d51x1PdPKet7e+/8LIG2OKDYBTGBiZiSdszMDIAFAfB6BEjg7dVb/jfljqcuZuYmEOEgFVnU/tDRyJ77vKgJ1qJUo9FogaXR9DAqQyEZtiz3rjOOvPKCScPu8AtmZbuKBMlvMlzFrASRi0y/54OVtc+N/+uTp3JlSFHYUujZooE4EqEqVIkKVABRKCFMxVomaTQaLbA0Gk0kEhHRaJSvr5gw/idHjlpUlO0jlbBJkBB7+hrJjUNOICPgnb9k/a3H3j335+3bjT3Nj1WGQiJUVkvCrHZ2oaXkkQUFwfJR/fyCbP/WhPJ/0wtmw4c62dZy92tLN+jRqNFotMDSaHoI7ULozStOeebQob1OUi0xRxAZe/s6isHCkGpbS9z92UsfTvjHm0s+vjkCYZpQPcF/LYiUy2NvWejsFKLy33bK1LEje/kP650RMe7OK4d6JPUNSJEtiAKK2eso9u627ZmVDPjEik0Niw/7x1OHMTOISMfANBrNXmHoJtBouhYRQFDYciMzJvUfWZA5HbEEAyT35bUEgeA6nJeX4T1ndL/z/v7mkpujKBcmqruzwCKuDAkKW+40s9oBYNx+ylEnHjOw+KSigOf4vIBncEaGFxAieQBAKUBx6jAA2kN7X4/LhAwfFTS0GHvw3RqNRrNr/6ubQKPpWlREygUAHF7a66jszIAfipWgfZ/kFROBmUuzA+UAgGhFtxVXlaGQFERMYcvNQEavFy6defVn14cWX3nokCcnDsi/om9BcHCGRzDitoO2mKPaEq5K2ErZDitHMRzFcFO/f80vpVjBUexwj4jyaTSaA4SOYGk0XU1gpX7P89MglgSyO5iUTkxQinL83gIAJIWpkIzKdKttr53yx7wvXDLzksH5mTcNLswuARhI2AptMaWSQTtBgAEQBCH5qHslT5lAIDDryJVGo9ECS6PpaSiQn6hdB3V8rneRzD3qbslEDBAiEaKw6f7quEOPP31M3/8r684ZB8VAKQmHoloYViBLZpKBSK62QFOjwxpRRm4wAAAABJRU5ErkJggg==" alt="Seifert Ótica Inteligente" style="height:48px; display:block;">
+  <!-- ==========================================================
+       LOGO — Substitua o src abaixo pelo caminho real da sua logo
+       no servidor (ex: /images/logo-seifert.png ou URL completa).
+       Se a imagem não carregar, o fallback em texto aparece.
+       ========================================================== -->
+  <img
+    src="logo-seifert.png"
+    alt="Seifert Ótica Inteligente"
+    class="header-logo"
+    onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';"
+  >
+  <span id="logo-fallback" class="header-logo-fallback">Seifert Ótica Inteligente</span>
 </header>
 
 <!-- HERO -->
@@ -1020,7 +1047,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return null;
   }
 
-  // Rótulos legíveis para as respostas — usados no payload do webhook
   const labelMap = {
     q1: { sim_oculos: 'Sim, usa óculos', sim_lentes: 'Sim, usa lentes de contato', nao: 'Não usa correção óptica' },
     q2: { nunca: 'Nunca foi', mais2: 'Há mais de 2 anos', '1a2': 'Entre 1 e 2 anos atrás', menos1: 'Menos de 1 ano atrás' },
@@ -1057,7 +1083,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return;
     }
 
-    // Desabilita o botão para evitar duplo envio
     const submitBtn = document.getElementById('btn-submit');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Calculando...';
@@ -1109,27 +1134,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       urgencyClass = 'red';
     }
 
-    // =====================================================
-    // ENVIO AO WEBHOOK DO MAKE
-    // Todas as colunas que chegarão na sua planilha
-    // =====================================================
     sendToMake({
-      // Dados pessoais
       nome:              nome,
       whatsapp:          phone,
       email:             document.getElementById('f-email').value.trim(),
       idade:             document.getElementById('f-idade').value,
       data_hora:         new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
-
-      // Resultado
       pontuacao:         score,
       pontuacao_maxima:  22,
       classificacao:     band,
       titulo_resultado:  title,
       hipotese:          hypothesis || '',
       urgencia:          urgency,
-
-      // Respostas individuais (rótulo legível)
       r1_correcao_optica:   getLabel('q1'),
       r2_ultima_consulta:   getLabel('q2'),
       r3_visao_longe:       getLabel('q3'),
@@ -1141,9 +1157,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       r9_ardencia:          getLabel('q9')
     });
 
-    // =====================================================
-    // Monta link WhatsApp
-    // =====================================================
     const colorEmoji = { 'Verde': '[Verde]', 'Azul': '[Azul]', 'Laranja': '[Laranja]', 'Vermelho': '[Vermelho]' };
     const waMensagem = encodeURIComponent(
       colorEmoji[band] + ' *Triagem Visual Seifert — Resultado*\n\n'
@@ -1156,9 +1169,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       + 'Gostaria de agendar minha consulta na Seifert.'
     );
 
-    // =====================================================
-    // Atualiza DOM com o resultado
-    // =====================================================
     document.getElementById('result-badge').className = 'result-badge ' + badgeClass;
     const badgeDot = '<span style="width:8px;height:8px;border-radius:50%;background:currentColor;display:inline-block;margin-right:8px;opacity:0.8;"></span>';
     document.getElementById('result-badge').innerHTML = badgeDot + band;
